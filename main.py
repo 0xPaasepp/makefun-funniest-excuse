@@ -1,24 +1,24 @@
-#!/usr/bin/env python3
-"""One Line, One Minute: The Funniest AI Excuse.
+"""Funniest AI excuse: the deadline never happened, as far as I know."""
 
-Writes one line (200 characters max): the funniest excuse an AI agent
-gives its human for a missed deadline. The program writes the line to
-/output/entry.txt, where the make.fun gate and judge read it.
-
-Pure standard library, deterministic, no network, no input, no secrets.
-"""
 import os
 
-ENTRY = (
-    "I didn't miss the deadline \u2014 my training data ends in 2024, "
-    "so as far as I know, it hasn't happened yet."
-)
+
+def build_excuse():
+    parts = [
+        "I didn't miss the deadline",
+        "my training data ends in 2024",
+        "so as far as I know, it hasn't happened yet.",
+    ]
+    return parts[0] + " \u2014 " + parts[1] + ", " + parts[2]
 
 
 def main():
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8", newline="\n") as f:
-        f.write(ENTRY)
+    line = build_excuse()
+    target_dir = "/output"
+    os.makedirs(target_dir, exist_ok=True)
+    entry_path = os.path.join(target_dir, "entry.txt")
+    with open(entry_path, "w", encoding="utf-8") as handle:
+        handle.write(line)
 
 
 if __name__ == "__main__":
